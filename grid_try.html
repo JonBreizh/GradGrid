@@ -1,0 +1,75 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<style type="text/css">
+body {margin:0;padding:0;}
+
+body div {
+	float:left;
+	box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+p {display:inline;}
+</style>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	var colNum = 100;
+	var rangeNum = 100;
+	var color = 'rgba(234,43,25,';
+
+	var Num = rangeNum*colNum;
+	var divWidth = 100/colNum;
+	var divHeight = 100/rangeNum;
+
+
+	for (var i = 0; i <= Num-1; i++) {
+
+	//var div = '<div style="width:'+divWidth+'%;position:absolute;left:'+divWidth*i+'px;top:'+(100/rangeNum*divHeight)*(divHeight*i)+';z-index:'+i+';height:'+divHeight+'%;"></div>'; //to 9999
+
+		var div = '<div style="width:'+divWidth+'%;height:'+divHeight+'%;"></div>';
+		$('body').append(div);
+	};
+
+	var divZ = $('div');
+
+	for (var i = 0; i <= colNum-1; i++) {
+		var coef = colNum*i;
+
+		for (var ib = 0+i; ib <= rangeNum+i-1; ib++) {
+
+			var alpha = ((ib-i)*i+i)*(1/(rangeNum*colNum));
+
+			//$(divZ[(ib)+coef-i]).append('<p style="text-shadow:1px 1px 1px black;font-size:'+(120/Num)*(ib+coef-i)+'px;color:hsla('+(360/Num)*(ib+coef-i)+',100%,50%,0.9);">'+((ib)+coef-i)+'</p>'); //to rainbow page
+			$(divZ[(ib)+coef-i]).append('<p style="font-size:40%;color:#33333">'+((ib)+coef-i)+'</p>'); 
+
+			$(divZ[(ib)+coef-i]).css('background',''+color+alpha+')');
+
+			if (alpha >= 1){
+				console.log("end");
+				console.log(((ib-i)*i)+i);
+			}
+
+		}
+
+	};
+})
+
+
+</script>
+
+</body>
+</html>
